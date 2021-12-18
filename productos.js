@@ -10,11 +10,7 @@ const all = () => {
 }
 
 const find = (id) => {
-    return productos.find(function(producto) {
-        if (producto.id == id) {
-            return true
-        }
-    })
+    return productos.find(producto => producto.id == id)
 }
 
 module.exports = {
