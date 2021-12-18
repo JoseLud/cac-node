@@ -6,11 +6,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/productos', (req, res) => {
-    res.send('Lista de productos')
+    res.render('productos/index')
 })
 
 router.get('/productos/:id', (req, res) => {
-    res.send('Producto N° ' + req.params.id)
+    res.render('productos/show', { id: req.params.id })
 })
 
 module.exports = router
