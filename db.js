@@ -12,3 +12,5 @@ connection.connect((error) => {
         throw error
     }
 })
+
+module.exports = connection
