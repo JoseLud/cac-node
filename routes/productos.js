@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     res.render('index')
 })
 
-router.get('/productos/crate', controller.create)
+router.get('/productos/create', controller.create)
 router.post('/productos/store', controller.store)
 
 router.get('/productos', controller.index)
