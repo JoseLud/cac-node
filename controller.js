@@ -38,7 +38,8 @@ const store = (req, res) => {
     if (!errors.isEmpty()) {
         res.render('productos/create', { values: req.body, errors: errors.array() })
     } else {
-        connection.query('INSERT INTO productos SET ?', { nombre: req.body.nombre }, (error) => {
+        connection.query('INSERT INTO productos SET ?', 
+        { nombre: req.body.nombre, descripcion: req.body.description }, (error) => {
             if (error) {
                 throw error
             }

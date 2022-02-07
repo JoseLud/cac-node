@@ -13,5 +13,16 @@
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" id="nombre" value="<%= values.nombre %>">
     </div>
+    <br>
+    <div>
+        <label for="description">Descripcion: </label>
+        <textarea 
+            name="description" 
+            id="description" 
+            cols="30" 
+            rows="10">
+            <%= values.description %>
+        </textarea>
+    </div>
     <button type="submit">Enviar</button>
 </form>
