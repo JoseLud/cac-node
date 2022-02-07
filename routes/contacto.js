@@ -8,10 +8,11 @@ router.get('/contacto', (req, res) => {
 })
 
 router.post('/contacto', [
-    body('nombre', 'El nombre tiene que tener 3 caracteres o mas').isLength(3)
+    body('nombre', 'El nombre tiene que tener 3 caracteres o mas').isLength(3),
+    body('email', 'Mensaje de error por el Correo').isEmail().trim().normalizeEmail(),
+    body('mensaje', 'Mensaje Obligatorio').notEmpty()
 ], (req, res) => {
     const errors = validationResult(req) 
-    // console.log(req.body.nombre)
     if (!errors.isEmpty()) {
         res.render('contacto', { values: req.body, errors: errors.array() })
     } else {

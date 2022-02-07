@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+const { body } = require('express-validator')
+
 const controller = require('../controller')
 
 router.get('/', (req, res) => {
@@ -8,7 +10,10 @@ router.get('/', (req, res) => {
 })
 
 router.get('/productos/create', controller.create)
-router.post('/productos/store', controller.store)
+
+router.post('/productos/store', [
+    body('nombre', 'El nombre es obligatorio').notEmpty()
+], controller.store)
 
 router.get('/productos', controller.index)
 router.get('/productos/:id', controller.show)
