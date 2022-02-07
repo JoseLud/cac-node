@@ -27,7 +27,7 @@ const show = (req, res) => {
 }
 
 const create = (req, res) => {
-    res.render('productos/create')
+    res.render('productos/create', { values:{} })
 }
 
 const store = (req, res) => {
