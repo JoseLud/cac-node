@@ -9,6 +9,9 @@ router.get('/', (req, res) => {
     res.render('index')
 })
 
+router.get('/productos/edit', controller.edit)
+router.put('/productos/update', controller.update)
+
 router.get('/productos/create', controller.create)
 
 router.post('/productos/store', [

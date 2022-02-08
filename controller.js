@@ -49,11 +49,21 @@ const store = (req, res) => {
     }
 }
 
+const edit = (req, res) => {
+    res.render('productos/edit')
+}
+
+const update = (req, res) => {
+    res.send('actualizando...')
+}
+
 module.exports = {
     index,
     show,
     create, 
-    store
+    store,
+    edit,
+    update
 }
 
 
