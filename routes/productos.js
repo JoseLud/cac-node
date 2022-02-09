@@ -9,15 +9,17 @@ router.get('/', (req, res) => {
     res.render('index')
 })
 
-router.get('/productos/edit', controller.edit)
-router.put('/productos/update', controller.update)
+// UPDATE
+router.get('/productos/:id/edit', controller.edit)
+router.put('/productos/update', controller.update) 
 
+// CREATE
 router.get('/productos/create', controller.create)
-
 router.post('/productos/store', [
     body('nombre', 'El nombre es obligatorio').notEmpty()
 ], controller.store)
 
+// READ
 router.get('/productos', controller.index)
 router.get('/productos/:id', controller.show)
 

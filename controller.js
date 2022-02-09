@@ -50,7 +50,7 @@ const store = (req, res) => {
 }
 
 const edit = (req, res) => {
-    res.render('productos/edit')
+    res.render('productos/edit', { values:{} })
 }
 
 const update = (req, res) => {
