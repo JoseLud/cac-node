@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator')
 const res = require('express/lib/response')
 
-const connection = require('./db')
+const connection = require('../db')
 
 const index = (req, res) => {
     connection.query('SELECT * FROM productos', (error, results) => {

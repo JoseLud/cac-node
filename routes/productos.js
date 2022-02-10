@@ -3,7 +3,7 @@ const router = express.Router()
 
 const { body } = require('express-validator')
 
-const controller = require('../controller')
+const controller = require('../controllers/productos')
 
 router.get('/', (req, res) => {
     res.render('index')
