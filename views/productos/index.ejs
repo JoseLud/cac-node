@@ -10,13 +10,22 @@
     </h2>
     <a href="/productos/<%= producto.id %>/edit">Editar</a>
 
-    <form id="form-delete" action="/productos/<%= producto.id %>/delete?_method=DELETE" method="post">
+    <form class="form-delete" action="/productos/<%= producto.id %>/delete?_method=DELETE" method="post">
         <button type="submit">Borrar</button>
     </form>
 <% }) %>
 
 <script>
-    document.querySelector('#form-delete').addEventListener('submit', (event) => {
+    const forms = document.querySelectorAll('.form-delete')
+    
+    forms.forEach(form => {
+        form.addEventListener('submit', (event) => {
         event.preventDefault()
+
+        if (confirm('Esta seguro?') == true) {
+            event.target.submit()
+        }
+    })
+    
     })
 </script>
