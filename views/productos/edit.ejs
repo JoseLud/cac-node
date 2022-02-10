@@ -9,9 +9,11 @@
     <% } %>
 
 <form action="/productos/update?_method=PUT" method="post">
+    <input type="hidden" name="id" value="<%= values.id || producto.id %>">
     <div>
         <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" id="nombre" value="<%= values.nombre %>">
+        <input type="text" name="nombre" id="nombre" 
+            value="<%= values.nombre || producto.nombre %>">
     </div>
     <br>
     <div>
@@ -21,8 +23,8 @@
             id="description" 
             cols="30" 
             rows="10">
-            <%= values.description %>
+            <%= values.description || producto.descripcion%>
         </textarea>
     </div>
-    <button type="submit">Enviar</button>
+    <button type="submit">Guardar Cambios</button>
 </form>

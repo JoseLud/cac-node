@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator')
+const res = require('express/lib/response')
 
 const connection = require('./db')
 
@@ -50,11 +51,47 @@ const store = (req, res) => {
 }
 
 const edit = (req, res) => {
-    res.render('productos/edit', { values:{} })
+    // res.render('productos/edit', { values:{} })
+
+    connection.query('SELECT id, nombre, descripcion FROM productos WHERE id = ?', [ req.params.id], (error, result) => {
+        if (error) {
+            throw error
+        }
+
+        if (result.length > 0){
+             res.render('productos/edit', { values:{}, producto: result[0] })
+        } else {
+            res.send('No existe el producto')
+        }
+    }) 
 }
 
 const update = (req, res) => {
-    res.send('actualizando...')
+    const errors = validationResult(req) 
+    if (!errors.isEmpty()) {
+        res.render('productos/edit', { values: req.body, errors: errors.array(), producto: {} })
+    } else {
+        connection.query('UPDATE productos SET ? WHERE id = ?', 
+       [ { nombre: req.body.nombre, descripcion: req.body.description }, req.body.id], (error) => {
+            if (error) {
+                throw error
+            }
+    
+            res.redirect('/productos')
+        })
+    }
+}
+
+const destroy = (req, res) => {
+    // res.send('Borrado: ' + req.params.id)
+    connection.query('DELETE FROM productos WHERE id = ?', 
+    [ req.params.id], (error) => {
+         if (error) {
+             throw error
+         }
+ 
+         res.redirect('/productos')
+     })
 }
 
 module.exports = {
@@ -63,7 +100,8 @@ module.exports = {
     create, 
     store,
     edit,
-    update
+    update,
+    destroy
 }
 
 

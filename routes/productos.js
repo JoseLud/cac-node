@@ -11,7 +11,12 @@ router.get('/', (req, res) => {
 
 // UPDATE
 router.get('/productos/:id/edit', controller.edit)
-router.put('/productos/update', controller.update) 
+router.put('/productos/update', [
+    body('nombre', 'El nombre es obligatorio').notEmpty()  
+],
+controller.update) 
+
+router.delete('/productos/:id/delete', controller.destroy)
 
 // CREATE
 router.get('/productos/create', controller.create)

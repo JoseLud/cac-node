@@ -5,9 +5,18 @@
 <a href="/productos/create">Nuevo Producto</a>
 
 <% productos.forEach((producto) => { %> 
-
-    <h2> 
+   <h2> 
         <a href="/productos/<%= producto.id %>"> <%= producto.nombre %></a>  
     </h2>
     <a href="/productos/<%= producto.id %>/edit">Editar</a>
+
+    <form id="form-delete" action="/productos/<%= producto.id %>/delete?_method=DELETE" method="post">
+        <button type="submit">Borrar</button>
+    </form>
 <% }) %>
+
+<script>
+    document.querySelector('#form-delete').addEventListener('submit', (event) => {
+        event.preventDefault()
+    })
+</script>
