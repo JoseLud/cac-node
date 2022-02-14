@@ -20,10 +20,11 @@ app.use(express.urlencoded({extended: false}))
 app.use(methodOverride('_method'))
 
 const isLogin = (req, res, next) => {
-    if (!req.session.user_id && req.url != '/login') {
+    if (!req.session.user_id && req.url != '/login' &&req.url != '/register' && req.url != '/contacto') {
         res.redirect('/login')
     }
-
+    // if (!req.session.user_id && req.url != '/login' && req.url != '/register'&& req.url != '/contacto') {
+    //     res.redirect('/login')
     next()
 }
 
