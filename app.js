@@ -19,6 +19,20 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride('_method'))
 
+const isLogin = (req, res, next) => {
+    if (!req.session.user_id && req.url != '/login') {
+        res.redirect('/login')
+    }
+
+    next()
+}
+
+app.use(isLogin)
+
+app.get('/', (req, res) => {
+    res.render('index')
+})
+
 app.use('/', require('./routes/auth'))
 app.use('/', require('./routes/productos'))
 app.use('/', require('./routes/contacto'))
