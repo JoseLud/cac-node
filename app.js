@@ -17,14 +17,14 @@ app.use(expresslayouts)
 
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({extended: false}))
+app.use(express.json())
 app.use(methodOverride('_method'))
 
 const isLogin = (req, res, next) => {
-    if (!req.session.user_id && req.url != '/login' &&req.url != '/register' && req.url != '/contacto') {
+    if (!req.session.user_id && req.url != '/login' && req.url != '/register' && req.url != '/contacto') {
         res.redirect('/login')
     }
-    // if (!req.session.user_id && req.url != '/login' && req.url != '/register'&& req.url != '/contacto') {
-    //     res.redirect('/login')
+    
     next()
 }
 
@@ -37,6 +37,8 @@ app.get('/', (req, res) => {
 app.use('/', require('./routes/auth'))
 app.use('/', require('./routes/productos'))
 app.use('/', require('./routes/contacto'))
+
+app.use('/api', require('./routes/categorias'))
 
 app.use((req, res, next) => {
     res.status(404).send('Not found')
