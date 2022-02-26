@@ -1,10 +1,19 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/categorias', (req, res) => {
-    const categorias = [{ id: 1, nombre: 'Categoria 1'}]
+const controller = require('../controllers/api/categorias')
+const connection = require('../db')
+// Read
+router.get('/categorias', controller.index)
+router.get('/categorias/:id', controller.show)
 
-    res.send(categorias)
-})
+// Create
+router.post('/categorias', controller.store)
+
+// Update
+router.put('/categorias/:id', controller.update)
+
+// Delete
+router.delete('/categorias/:id', controller.destroy)
 
 module.exports = router

@@ -28,7 +28,7 @@ const isLogin = (req, res, next) => {
     next()
 }
 
-app.use(isLogin)
+// app.use(isLogin)
 
 app.get('/', (req, res) => {
     res.render('index')
